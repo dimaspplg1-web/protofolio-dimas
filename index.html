@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Dimas Adam Ari Wibowo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">RPL 1</div>
+            <nav aria-label="Navigasi utama">
+                <a href="#tentang">Tentang Saya</a>
+                <a href="#keahlian">Keahlian Saya</a>
+                <a href="#portofolio">Portofolio Saya</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="tentang" class="hero">
+            <div class="hero-image">
+                <img src="img/foto_profil.jpg" alt="Foto profil Dimas Adam Ari Wibowo">
+            </div>
+            <div class="hero-copy">
+                <p class="eyebrow">Halo, saya 👋</p>
+                <h1>Dimas Adam Ari Wibowo</h1>
+                <p>
+                    Saya adalah siswa yang tertarik pada desain, teknologi, dan pengembangan web.
+                    Saya senang belajar hal baru, menyelesaikan tugas dengan rapi, dan membangun
+                    pengalaman digital yang bermanfaat bagi banyak orang.
+                </p>
+            </div>
+        </section>
+
+        <section id="keahlian" class="skills">
+            <h2>Keahlian Saya</h2>
+            <div class="skills-grid">
+                <article class="card">
+                    <div class="card-icon">🌐</div>
+                    <h3>HTML</h3>
+                    <p>Membuat struktur halaman web yang rapi, mudah dibaca, dan sesuai kebutuhan.</p>
+                </article>
+                <article class="card">
+                    <div class="card-icon">🎨</div>
+                    <h3>CSS</h3>
+                    <p>Mendesain tampilan yang menarik, responsif, dan nyaman dilihat di berbagai perangkat.</p>
+                </article>
+                <article class="card">
+                    <div class="card-icon">🐍</div>
+                    <h3>Python</h3>
+                    <p>Menguasai bahasa pemrograman Python untuk pengembangan aplikasi dan analisis data.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="portofolio" class="gallery">
+            <h2>Portofolio Saya</h2>
+            <div class="gallery-grid">
+                <figure class="portfolio-item">
+                    <img src="img/foto_web produck.png" alt="Proyek Web Produk">
+                    <figcaption>
+                        <h4>Web Produk</h4>
+                        <p>Halaman tampilan produk yang menarik</p>
+                    </figcaption>
+                </figure>
+                <figure class="portfolio-item">
+                    <img src="img/foto_game snake.png" alt="Proyek Game Snake">
+                    <figcaption>
+                        <h4>Game Snake</h4>
+                        <p>Permainan klasik buatan sendiri</p>
+                    </figcaption>
+                </figure>
+                <figure class="portfolio-item">
+                    <img src="img/foto_web universitas.png" alt="Proyek Web Universitas">
+                    <figcaption>
+                        <h4>Web Profil Universitas</h4>
+                        <p>Tampilan informasi lembaga pendidikan</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© <span id="tahun"></span> Dimas Adam Ari Wibowo | SMK BRANTAS</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("✅ Website Dimas Adam — Siap!");
+
+            // Navigasi dengan posisi yang pas
+            const navLinks = document.querySelectorAll(".site-header nav a");
+            const header = document.querySelector(".site-header");
+
+            navLinks.forEach(link => {
+                link.addEventListener("click", function (e) {
+                    const targetId = this.getAttribute("href");
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        e.preventDefault();
+                        const headerHeight = header ? header.offsetHeight : 0;
+                        const posisi = targetSection.getBoundingClientRect().top + window.scrollY;
+                        window.scrollTo({
+                            top: posisi - headerHeight - 20,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+            // Tahun otomatis
+            const tahun = document.getElementById("tahun");
+            if (tahun) tahun.textContent = new Date().getFullYear();
+
+            // Animasi muncul saat digulir
+            const pengamat = new IntersectionObserver((entri) => {
+                entri.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.style.opacity = "1";
+                        e.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll(".card, .portfolio-item").forEach(el => {
+                el.style.opacity = "0";
+                el.style.transform = "translateY(25px)";
+                el.style.transition = "all 0.6s ease";
+                pengamat.observe(el);
+            });
+
+            // Efek mengecil saat digulir
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 60) {
+                    header.style.padding = "0.6rem 0";
+                } else {
+                    header.style.padding = "1rem 0";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

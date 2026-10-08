@@ -1,0 +1,332 @@
+:root {
+    /* 🎨 Palet Warna Baru — Lembut, Segar & Nyaman */
+    --biru-tua: #1e3a8a;
+    --biru-utama: #3b82f6;
+    --biru-muda: #bfdbfe;
+    --biru-sangat-muda: #eff6ff;
+    --hijau-segar: #10b981;
+    --ungu-lembut: #8b5cf6;
+    --latar-utama: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
+    --putih: #ffffff;
+    --teks-gelap: #1e293b;
+    --teks-abu: #64748b;
+    --batas: #e2e8f0;
+    --bayangan: 0 10px 30px rgba(30, 58, 138, 0.08);
+    --bayangan-kuat: 0 15px 40px rgba(30, 58, 138, 0.12);
+    --sudut: 20px;
+    --sudut-kecil: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", "Roboto", Tahoma, sans-serif;
+    line-height: 1.7;
+    background: var(--latar-utama);
+    color: var(--teks-gelap);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
+.container {
+    width: min(1100px, calc(100% - 2rem));
+    margin: 0 auto;
+}
+
+/* === HEADER === */
+.site-header {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+    transition: all 0.3s ease;
+}
+
+.header-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.brand {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--biru-tua), var(--biru-utama));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.05em;
+}
+
+.site-header nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.site-header nav a {
+    color: var(--teks-gelap);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.site-header nav a:hover {
+    background: var(--biru-sangat-muda);
+    color: var(--biru-utama);
+    transform: translateY(-2px);
+}
+
+/* === HERO / BAGIAN UTAMA === */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem 0;
+    text-align: center;
+    flex: 1;
+}
+
+.hero-image {
+    position: relative;
+}
+
+.hero-image::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--biru-utama), var(--ungu-lembut));
+    z-index: -1;
+    animation: putar 8s linear infinite;
+}
+
+@keyframes putar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.hero img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--putih);
+    box-shadow: var(--bayangan-kuat);
+    transition: transform 0.4s ease;
+}
+
+.hero img:hover {
+    transform: scale(1.05);
+}
+
+.hero-copy {
+    max-width: 600px;
+}
+
+.eyebrow {
+    color: var(--biru-utama);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, var(--biru-tua), var(--biru-utama));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero p {
+    color: var(--teks-abu);
+    font-size: 1.05rem;
+}
+
+/* === KEAHLIAN === */
+.skills, .gallery {
+    padding: 2rem 0 3rem;
+}
+
+.skills h2, .gallery h2 {
+    text-align: center;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    margin-bottom: 2rem;
+    color: var(--biru-tua);
+    position: relative;
+}
+
+.skills h2::after, .gallery h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--biru-utama), var(--hijau-segar));
+    margin: 0.75rem auto 0;
+    border-radius: 2px;
+}
+
+.skills-grid, .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.card {
+    background: var(--putih);
+    border-radius: var(--sudut);
+    padding: 2rem;
+    box-shadow: var(--bayangan);
+    transition: all 0.4s ease;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--biru-utama), var(--ungu-lembut));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--bayangan-kuat);
+    border-color: var(--biru-muda);
+}
+
+.card:hover::before {
+    transform: scaleX(1);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+    color: var(--biru-tua);
+}
+
+.card p {
+    color: var(--teks-abu);
+}
+
+/* === PORTOFOLIO === */
+.portfolio-item {
+    background: var(--putih);
+    border-radius: var(--sudut);
+    overflow: hidden;
+    box-shadow: var(--bayangan);
+    transition: all 0.4s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--bayangan-kuat);
+}
+
+.portfolio-item img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.08);
+}
+
+.portfolio-item figcaption {
+    padding: 1.5rem;
+}
+
+.portfolio-item h4 {
+    font-size: 1.15rem;
+    margin-bottom: 0.25rem;
+    color: var(--biru-tua);
+}
+
+.portfolio-item p {
+    color: var(--teks-abu);
+    font-size: 0.95rem;
+}
+
+/* === FOOTER === */
+.site-footer {
+    background: var(--biru-tua);
+    color: #bfdbfe;
+    padding: 2rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* === TATA LETAK LAYAR BESAR === */
+@media (min-width: 768px) {
+    .header-inner {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .site-header nav {
+        flex-direction: row;
+        gap: 0.75rem;
+    }
+
+    .hero {
+        flex-direction: row;
+        text-align: left;
+        gap: 3rem;
+        padding: 4rem 0;
+    }
+
+    .skills-grid, .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        width: min(1100px, calc(100% - 3rem));
+    }
+
+    .skills-grid, .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
